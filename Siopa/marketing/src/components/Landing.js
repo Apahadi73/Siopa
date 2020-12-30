@@ -17,13 +17,13 @@ function Copyright() {
       {"Copyright © "}
       <MaterialLink component={Link} to="/" color="inherit">
         Your Website
-      </MaterialLink>{" "}
+      </MaterialLink>
       {new Date().getFullYear()}
-      {"."}
     </Typography>
   );
 }
 
+// altering css for the page
 const useStyles = makeStyles((theme) => ({
   "@global": {
     a: {
@@ -163,4 +163,4 @@ export default function Album() {
       {/* End footer */}
     </React.Fragment>
   );
-}                                      
+}
