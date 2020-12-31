@@ -14,9 +14,9 @@ import { Link } from "react-router-dom";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
+      {"©"}
       <MaterialLink component={Link} to="/" color="inherit">
-        Your Website
+        Siopa
       </MaterialLink>
       {new Date().getFullYear()}
     </Typography>
@@ -147,17 +147,6 @@ export default function Album() {
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="textSecondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
-        </Typography>
         <Copyright />
       </footer>
       {/* End footer */}

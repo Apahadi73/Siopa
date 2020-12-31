@@ -4,23 +4,24 @@ import { createMemoryHistory, createBrowserHistory } from "history";
 import App from "./App";
 
 // Mount function to start up the app
-const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
-  // we created history in this function because
-  // we want to sync history of this object to that of container project
+const mount = (el, { onNavigate, defaultHistory, initialPath, onSignIn }) => {
   const history =
     defaultHistory ||
     createMemoryHistory({
       // provide memory history a initial path
       initialEntries: [initialPath],
     });
+
   if (onNavigate) {
-    // when ever path changes, call onNavigate callback from container
     history.listen(onNavigate);
   }
-  ReactDOM.render(<App history={history} />, el);
+
+  ReactDOM.render(<App onSignIn={onSignIn} history={history} />, el);
+
   return {
     onParentNavigate({ pathname: nextPathname }) {
       const { pathname } = history.location;
+
       if (pathname !== nextPathname) {
         history.push(nextPathname);
       }
@@ -28,12 +29,12 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
   };
 };
 
-// If we are in development and in isolation.
+// If we are in development and in isolation,
 // call mount immediately
 if (process.env.NODE_ENV === "development") {
-  const devRoot = document.querySelector("#_marketing-dev-root");
+  const devRoot = document.querySelector("#_auth-dev-root");
+
   if (devRoot) {
-    // if dev mode, we provide browser history as default
     mount(devRoot, { defaultHistory: createBrowserHistory() });
   }
 }
